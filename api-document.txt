@@ -1,0 +1,6 @@
+base-url=> http://localhost:3000
+
+
+1- get-otp=> send mobile to => http://localhost:3000/auth/get-otp
+
+
