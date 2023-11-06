@@ -1,12 +1,15 @@
 const { Schema, Types } = require('mongoose');
 const AnswerSchema = new Schema({
     user: { type: Types.ObjectId, ref: 'user', required: true },
-    comments: { type: String, required: true,ref:'comment' },
+    comments: { type: String, required: true, ref: 'comment' },
     show: { type: Boolean, default: false },
     isReplly: { type: Boolean, default: false },
 },
     {
-        timestamps: true
+        timestamps: true,
+        toJSON:{
+            virtuals:true
+        }
     })
 
 const CommentsSchema = new Schema({
@@ -18,6 +21,9 @@ const CommentsSchema = new Schema({
 },
     {
         timestamps: true,
+        toJSON:{
+            virtuals:true
+        }
     })
 
 

@@ -34,7 +34,7 @@ function verifyToken(req, res, next) {
 
 
 
-            console.log(user);
+            
             if (!user) return next(createHttpError.Unauthorized('حساب کاربری یافت نشد'))
             req.user = user
         

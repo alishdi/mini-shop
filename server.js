@@ -20,7 +20,7 @@ app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerJsDoc({
     swaggerDefinition: {
         openapi: '3.0.0',
         info: {
-            title: 'ali practic',
+            title: 'ali practice',
             version: '1.0.0',
             description: 'تمرین فروشگاه',
             contact: {

@@ -126,10 +126,27 @@ async function getProductById(productID) {
     if (!product) throw createHttpError.NotFound('محصول یافت نشد')
     return product
 }
+async function getoneProduct(req, res, next) {
+    try {
+        const { id } = req.params;
+        const product = await getProductById(id);
+        return res.status(200).json({
+            status: 200,
+            data: {
+                product
+            }
+        })
+
+    } catch (error) {
+        next(error)
+    }
+
+}
 
 module.exports = {
     getAllproduct,
     addProduct,
     editProduct,
-    removeProduct
+    removeProduct,
+    getoneProduct
 }

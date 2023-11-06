@@ -12,7 +12,7 @@ async function getAllUser(req, res, next) {
             users = await UserModel.find({ $text: { $search: search } })
 
         } else {
-            users = await UserModel.find({}, { otp: 0, __v: 0,password:0,token:0 })
+            users = await UserModel.find({}, { otp: 0, __v: 0,password:0,token:0 }).populate([{path:'basket.products.productID'}])
         }
         return res.status(200).json({
             status: 200,
@@ -43,7 +43,7 @@ async function getUserByID(req, res, next) {
 async function updateProfile(req, res, next) {
     try {
 
-        const userID = req.user._id;
+        const userID = req.user[0]._id;
         await userSchema.validateAsync(req.body)
         const data = req.body;
         const profile = path.join(`${req.body.fileuploadpath}/${req.file.filename}`)
@@ -56,12 +56,14 @@ async function updateProfile(req, res, next) {
             if (Array.isArray(data[key]) && data[key].length == 0) delete data[key]
             if (nullishData.includes(data[key])) delete data[key]
         })
+        console.log(req.user);
         const updateResult = await UserModel.updateOne({ _id: userID }, {
             $set: {
                 ...data,
                 profile
             }
         })
+        console.log(updateResult);
         if (!updateResult.modifiedCount) throw createHttpError.InternalServerError('خطای سرور')
         return res.status(200).json({
             status: 200,

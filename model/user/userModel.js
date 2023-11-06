@@ -15,7 +15,7 @@ const userSchema = new Schema({
     last_name: { type: String },
     username: { type: String, unique: true },
     mobile: { type: String, required: true, unique: true },
-    email: { type: String, lowercase: true ,unique:true},
+    email: { type: String, lowercase: true, unique: true },
     password: { type: String },
     confirm_password: { type: String },
     otp: {
@@ -28,11 +28,14 @@ const userSchema = new Schema({
     discount: { type: Number, default: 0 },
     birthday: { type: String },
     token: { type: String, dafault: '' },
+    like: { type: [Types.ObjectId], default: [] },
+    deslike: { type: [Types.ObjectId], default: [] },
+    bookmark: { type: [Types.ObjectId], default: [] },
     role: { type: String, default: 'USER' },
     profile: { type: String, default: 'image.png' },
     products: { type: [Types.ObjectId], ref: 'product', default: [] },
     token: { type: String, default: '' },
-    basket: { type: basketSchema }
+    basket: { type: basketSchema,default:{} ,ref:'product'}
 }, {
     timestamps: true,
     toJSON: {
