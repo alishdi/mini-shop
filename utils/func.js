@@ -71,6 +71,12 @@ function copyObjet(object) {
     return JSON.parse(JSON.stringify(object))
 }
 
+function invoiceNumberGenerator() {
+    let d = new Date();
+    let dayname = d.toLocaleString({ weekday: `long` }).split(",").join('')
+    return dayname
+}
+
 
 
 
@@ -83,5 +89,6 @@ module.exports = {
     setFeature,
     listOfImageFromRequest,
     deleteFieldInPublic   ,
-    copyObjet
+    copyObjet,
+    invoiceNumberGenerator
 }

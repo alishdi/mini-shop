@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const { SECRET_KEY_ACCESS_TOKEN } = require("./constant");
 
 function tokenGenerator(payload) {
-    const token = jwt.sign(payload,SECRET_KEY_ACCESS_TOKEN, { expiresIn: '365 days' })
+    const token = jwt.sign(payload,SECRET_KEY_ACCESS_TOKEN, { expiresIn: '7d' })
     return token
 }
 function tokenVerify(token) {

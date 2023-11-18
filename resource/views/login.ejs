@@ -1,0 +1,14 @@
+<div class="container">
+    <%if(error){%>
+        <h3><%=error%></h3>
+        <%}%>
+    <div class="main">
+        <form action="http://localhost:3000/support/login" method="post">
+            <div class="flexible">
+                <label for="">mobile:</label>
+            <input type="text" id="mobile" name="mobile" placeholder="exaple:0912*******">
+            <input type="submit" value="submit" id="submit">
+            </div>
+        </form>
+    </div>
+</div>
